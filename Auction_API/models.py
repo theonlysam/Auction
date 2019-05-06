@@ -12,6 +12,12 @@ class Auction(models.Model):
     start_datetime = models.DateTimeField("Start Date/Time", auto_now=False, auto_now_add=False)
     end_datetime = models.DateTimeField("End Date/Time", auto_now=False, auto_now_add=False)
 
+    class Meta:
+        ordering = ('start_datetime',)
+
+    def __str__(self):
+        return '{} by {}'.format(self.title, self.owner)
+
 
 class Comment(models.Model):
     'Model to store user comments'
@@ -20,6 +26,10 @@ class Comment(models.Model):
     message = models.TextField(max_length=200)
     created = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return '{}'.format(self.message)
+        
+
 
 class Bid(models.Model):
     'Bids made by users'
@@ -27,3 +37,6 @@ class Bid(models.Model):
     auction = models.ForeignKey(Auction, on_delete=models.CASCADE)
     amount_offered = models.DecimalField(max_digits=19, decimal_places=0)
     created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return '{}'.format(self.amount_offered)
