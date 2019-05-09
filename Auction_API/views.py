@@ -11,7 +11,9 @@ from Auction_API.serializers import BidSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 from django.http import Http404
+
 
 
 
@@ -19,6 +21,7 @@ class AuctionsList(generics.ListCreateAPIView):
     'List all Auctions, or create a new auction'
     queryset = Auction.objects.all()
     serializer_class = AuctionSerializer
+    
 
 class AuctionsDetail(generics.RetrieveUpdateDestroyAPIView):
     'Process specific Auction'
@@ -28,6 +31,7 @@ class AuctionsDetail(generics.RetrieveUpdateDestroyAPIView):
 class AuctionBidList(generics.ListAPIView):
     'List all bids related to an auction'
     serializer_class = BidSerializer
+    permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
         queryset = Bid.objects.filter(auction = self.kwargs['pk'])
@@ -36,6 +40,7 @@ class AuctionBidList(generics.ListAPIView):
 class AuctionCommentList(generics.ListAPIView):
     'List all comments related to an auction'
     serializer_class = CommentSerializer
+    permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
         queryset = Comment.objects.filter(auction = self.kwargs['pk'])
@@ -44,26 +49,33 @@ class AuctionCommentList(generics.ListAPIView):
 class BidPost(generics.CreateAPIView):
     'Create a bid'
     serializer_class = BidSerializer
+    permission_classes = (IsAuthenticated,)
     # is a queryset necessary for just CreateAPIView?
 
 class BidDelete(generics.DestroyAPIView):
     'Delete a bid'
     serializer_class = BidSerializer
     queryset = Bid.objects.all()
+    permission_classes = (IsAuthenticated,)
     #for destroy a queryset is needed or override get_queryset()
 
 class CommentPost(generics.CreateAPIView):
     'Create a comment'
     serializer_class = CommentSerializer
+    permission_classes = (IsAuthenticated,)
 
 class CommentDelete(generics.DestroyAPIView):
     'Delete a comment'
     serializer_class = CommentSerializer
     queryset = Comment.objects.all()
+    permission_classes = (IsAuthenticated,)
 
 class CreateUser(generics.CreateAPIView):
     'Create a user'
     serializer_class = UserSerializer
+    permission_classes = (IsAuthenticated,)
+
+#class UserLogin(generics.)
 
 
 ###############################################################################
