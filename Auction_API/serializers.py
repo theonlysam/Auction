@@ -9,7 +9,7 @@ class UserSerializer(serializers.ModelSerializer):
     'Serialize user objects'
     class Meta:
         model = User
-        fields = '__all__'
+        fields = ('username',)
 
 class AuctionSerializer(serializers.ModelSerializer):
     'Serializer Auction objects'
