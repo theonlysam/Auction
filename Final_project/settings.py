@@ -40,12 +40,22 @@ INSTALLED_APPS = [
 
     'Auction_API',
     'rest_framework',
+    'django_filters',
 ]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
+    'DEFAULT_PAGINATION_CLASS':
+        #'rest_framework.pagination.LimitOffsetPagination',
+        'Auction_API.custompagination.LimitOffsetPaginationWithUpperBound',
+        'PAGE_SIZE': 12,
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.OrderingFilter',
+        'rest_framework.filters.SearchFilter',
+    ),
 }
 
 MIDDLEWARE = [

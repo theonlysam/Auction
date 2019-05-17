@@ -39,4 +39,4 @@ class Bid(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return '{}'.format(self.amount_offered)
+        return '{} who bid ${}'.format(self.user, self.amount_offered)

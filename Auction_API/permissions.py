@@ -11,6 +11,8 @@ class IsCurrentUserOwnerOrReadOnly(permissions.BasePermission):
             return obj.owner == request.user
 
 
+### For future reference 
+#https://www.programcreek.com/python/example/71197/rest_framework.permissions.SAFE_METHODS
 #Need to check if logged in user is the owner of the auction
-https://stackoverflow.com/questions/43064417/whats-the-differences-between-has-object-permission-and-has-permission-in-drfp
-https://stackoverflow.com/questions/38718454/django-rest-framework-owner-permissions
+#https://stackoverflow.com/questions/43064417/whats-the-differences-between-has-object-permission-and-has-permission-in-drfp
+#https://stackoverflow.com/questions/38718454/django-rest-framework-owner-permissions

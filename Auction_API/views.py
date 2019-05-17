@@ -12,7 +12,11 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
+from Auction_API.permissions import IsCurrentUserOwnerOrReadOnly
+from rest_framework import filters
+from django_filters import AllValuesFilter
 from django.http import Http404
+
 
 
 
@@ -21,12 +25,15 @@ class AuctionsList(generics.ListCreateAPIView):
     'List all Auctions, or create a new auction'
     queryset = Auction.objects.all()
     serializer_class = AuctionSerializer
+    filter_fields = ('title',)
+    search_fields = ('title','description',)
     
 
 class AuctionsDetail(generics.RetrieveUpdateDestroyAPIView):
     'Process specific Auction'
     queryset = Auction.objects.all()
     serializer_class = AuctionSerializer
+    #permission_class = (IsCurrentUserOwnerOrReadOnly,)
 
 class AuctionBidList(generics.ListAPIView):
     'List all bids related to an auction'
@@ -57,6 +64,7 @@ class BidDelete(generics.DestroyAPIView):
     serializer_class = BidSerializer
     queryset = Bid.objects.all()
     permission_classes = (IsAuthenticated,)
+    #permission_classes = (IsAuthenticated, IsCurrentUserOwnerOrReadOnly,)    
     #for destroy a queryset is needed or override get_queryset()
 
 class CommentPost(generics.CreateAPIView):
@@ -69,6 +77,7 @@ class CommentDelete(generics.DestroyAPIView):
     serializer_class = CommentSerializer
     queryset = Comment.objects.all()
     permission_classes = (IsAuthenticated,)
+    #permission_classes = (IsAuthenticated, IsCurrentUserOwnerOrReadOnly,)   
 
 class CreateUser(generics.CreateAPIView):
     'Create a user'
@@ -189,3 +198,4 @@ class CommentDeleteCBV(APIView):
         comment = self.get_object(pk)
         comment.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
