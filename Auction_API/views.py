@@ -27,6 +27,15 @@ class AuctionsList(generics.ListCreateAPIView):
     serializer_class = AuctionSerializer
     filter_fields = ('title',)
     search_fields = ('title','description',)
+
+    def create(self, request, *args, **kwargs):
+        'Upload Image'
+        serializer = self.get_serializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status = status.HTTP_201_CREATED)
+        return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
     
 
 class AuctionsDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -85,6 +94,7 @@ class CreateUser(generics.CreateAPIView):
     permission_classes = (IsAuthenticated,)
 
 #class UserLogin(generics.)
+
 
 
 ###############################################################################

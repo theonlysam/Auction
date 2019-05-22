@@ -16,6 +16,12 @@ class AuctionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Auction
         fields = '__all__'
+        
+class AuctionImageSerializer(serializers.ModelSerializer):
+    'Serialize Auction Image'
+    class Meta:
+        model = Auction
+        fields = ('image_url',)
 
 class CommentSerializer(serializers.ModelSerializer):
     'Serialize Comments'
