@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'Auction_API',
+    'Auction_UI',
     'rest_framework',
     'django_filters',
 ]
