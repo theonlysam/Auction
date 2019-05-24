@@ -20,7 +20,8 @@ from Auction_API import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     #path('api/', views.AuctionList),
-    path('api/', include('Auction_API.urls')),  
+    path('api/', include('Auction_API.urls')), 
+    path('', include('Auction_UI.urls')), 
         
 
 ]
