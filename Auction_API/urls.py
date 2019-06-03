@@ -12,8 +12,8 @@ urlpatterns = [
     path('comments/', views.CommentPost.as_view()),
     path('comments/<int:pk>/', views.CommentDelete.as_view()),
     path('signup/', views.CreateUser.as_view()),
-
-    path('token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
+    #path('login/', views.LoginUser.as_view()),
+    path('login/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('login/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
     
 ]

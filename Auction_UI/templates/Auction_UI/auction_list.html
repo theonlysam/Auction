@@ -25,11 +25,11 @@
 
          <v-card-text>
              <div class="subheading">{{auction.title}}</div>
-             <div class="orange--text">{{auction.description}}</div>
+             <div class="orange--text">${{auction.base_price}}</div>
          </v-card-text>
          
          <v-card-actions class="justify-center">                   
-             <v-btn flat  dark class="orange" href="{url 'auction_detail' pk=auction.id %}">Bid Now!
+             <v-btn flat  dark class="orange" href="{url 'auction_detail' pk=auction.id %}">Details
          </v-btn>
          </v-card-actions>
         </v-card>

@@ -47,7 +47,7 @@ class AuctionsDetail(generics.RetrieveUpdateDestroyAPIView):
 class AuctionBidList(generics.ListAPIView):
     'List all bids related to an auction'
     serializer_class = BidSerializer
-    permission_classes = (IsAuthenticated,)
+    #permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
         queryset = Bid.objects.filter(auction = self.kwargs['pk'])
@@ -56,7 +56,7 @@ class AuctionBidList(generics.ListAPIView):
 class AuctionCommentList(generics.ListAPIView):
     'List all comments related to an auction'
     serializer_class = CommentSerializer
-    permission_classes = (IsAuthenticated,)
+    #permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
         queryset = Comment.objects.filter(auction = self.kwargs['pk'])
@@ -90,8 +90,8 @@ class CommentDelete(generics.DestroyAPIView):
 
 class CreateUser(generics.CreateAPIView):
     'Create a user'
-    serializer_class = UserSerializer
-    permission_classes = (IsAuthenticated,)
+    serializer_class = UserSerializer    
+    
 
 #class UserLogin(generics.)
 

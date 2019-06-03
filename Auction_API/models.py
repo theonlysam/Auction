@@ -55,3 +55,10 @@ class Bid(models.Model):
 
     def __str__(self):
         return '{} who bid ${}'.format(self.user, self.amount_offered)
+
+
+'''
+Create a custom user model to be able to use email address as login
+will need to delete the database
+https://docs.djangoproject.com/en/2.2/topics/auth/customizing/#substituting-a-custom-user-model
+'''
