@@ -4,7 +4,7 @@
 <v-layout row>
 
         <v-flex xs12 sm3 offset-sm4>
-            <v-card class="mt-5">
+            <v-card class="mt-5 ">
                 <v-card-text class="text-xs-center orange--text">
                     <!--Headings-->
                     <div>
@@ -32,9 +32,13 @@
     
                         </v-form>
                     </div>
-                    
+                    <v-snackbar >
+                        <span>Incorrect Username or Password</span>
+                        <v-btn flat color="white">Close</v-btn>
+                    </v-snackbar>
     
                 </v-card-text>
+                
             </v-card>
     
         </v-flex>

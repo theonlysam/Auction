@@ -12,27 +12,40 @@
       <v-content class="">          
           <v-toolbar class="orange white--text" app >
               <v-flex s12 sm6 md4>
-                    <h1>SMITHIES AUCTIONS</h1>
+                <v-btn outline dark class="orange" href="../">
+                  <h1>SMITHIES AUCTIONS</h1>
+                </v-btn>
+                    
               </v-flex>              
-       
-                <v-flex xs12 sm6 md3>
-                  <v-form action="{% url 'search' %}" method='POST'>
+                <!--Search text box and Search button-->
+                <v-flex xs12 sm4 class="mt-2">
+                  <v-form action="{% url 'search' %}" method='GET'>
                     {% csrf_token %}
-                    <v-text-field dark append-icon="search"    
-                    color="white"    
-                    background-color="white"           
-                    outline>
-                  </v-text-field>
-                    <v-btn style="display: inline;" type="submit" class="white orange--text" flat >Search</v-btn>
+                    <v-layout row wrap>
+                      <v-flex >
+                          <v-text-field dark append-icon="search"    
+                            name="search"
+                            color="white"    
+                            background-color="white" 
+                            placeholder="{{ search_text }}"       
+                            outline>
+                        </v-text-field>
+                      </v-flex>
+                      <v-flex>
+                          <v-btn type="submit" class="white orange--text" flat >Search</v-btn>
+                      </v-flex>                      
+                    </v-layout>           
                   </v-form>
                 </v-flex>
               
 
                 <v-spacer></v-spacer>
-                <v-btn outline dark class="orange">
-                    Login
-                    <v-icon right>person</v-icon>
-                </v-btn>             
+               
+                <v-btn outline dark class="orange" href="../auction_login">
+                  Login
+                  <v-icon right>person</v-icon>
+                </v-btn>  
+               
             </v-toolbar>
 
         <v-container class="my-5" justify-center>
