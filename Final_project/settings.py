@@ -39,13 +39,24 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'Auction_API',
+    'Auction_UI',
     'rest_framework',
+    'django_filters',
 ]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
+    'DEFAULT_PAGINATION_CLASS':
+        #'rest_framework.pagination.LimitOffsetPagination',
+        'Auction_API.custompagination.LimitOffsetPaginationWithUpperBound',
+        'PAGE_SIZE': 12,
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.OrderingFilter',
+        'rest_framework.filters.SearchFilter',
+    ),
 }
 
 MIDDLEWARE = [
@@ -120,10 +131,14 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
+#Double check it TZ is needed
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")

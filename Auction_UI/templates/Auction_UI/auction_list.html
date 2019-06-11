@@ -1,0 +1,140 @@
+{% extends 'Auction_UI/base.html' %}
+
+{% block content %}
+
+<v-layout row wrap>
+    {% for auction in auction_list.results %}
+    <v-flex xs12 md2 class="ma-3" >
+        <v-card class="text-xs-center">
+            <v-responsive class="">
+                   <v-img
+                    class="white--text"
+                    height="220px"
+                    src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+                    href="http://www.google.com"
+                  >
+                  <v-container fill-height fluid>
+                        <v-layout fill-height>
+                          <v-flex xs12 align-end flexbox>
+                            <span class="headline white--text">{{auction.title}}</span>
+                          </v-flex>
+                        </v-layout>
+                      </v-container>
+                </v-img>
+            </v-responsive>
+
+         <v-card-text>
+             <div class="subheading">{{auction.title}}</div>
+             <div class="orange--text">${{auction.base_price}}</div>
+         </v-card-text>
+         
+         <v-card-actions class="justify-center">                   
+             <v-btn flat  dark class="orange" href="/{{auction.id}}/"/>Details
+         </v-btn>
+         </v-card-actions>
+        </v-card>
+     </v-flex>
+     {% endfor %}
+</v-layout>
+
+<!--
+<v-layout row wrap>
+    <v-flex xs12 md2  class="ma-3" >
+        <v-card class="text-xs-center">
+            <v-responsive class="">
+                 <v-img
+                 src=
+                 height="220px"                         
+               >
+               <v-container fill-height fluid>
+                     <v-layout fill-height>
+                       <v-flex xs12 align-end flexbox>
+                         <span class="headline white--text">Top 10 Australian beaches</span>
+                       </v-flex>
+                     </v-layout>
+                   </v-container>
+             </v-img>
+            </v-responsive>
+
+         <v-card-text>
+             <div class="subheading">Auction 1</div>
+             <div class="orange--text">Details</div>
+         </v-card-text>
+         <v-divider></v-divider>
+         <v-card-actions class="justify-center">                   
+             <v-btn flat  dark class="orange">Bid Now!
+         </v-btn>
+         </v-card-actions>
+        </v-card>
+     </v-flex>
+ 
+     <v-flex xs12 md2 class="ma-3" >
+             <v-card class="text-xs-center">
+                 <v-responsive class="">
+                         <v-img
+                         class="white--text"
+                         height="220px"
+                         src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+                       >
+                       <v-container fill-height fluid>
+                             <v-layout fill-height>
+                               <v-flex xs12 align-end flexbox>
+                                 <span class="headline white--text">Top 10 Australian beaches</span>
+                               </v-flex>
+                             </v-layout>
+                           </v-container>
+                     </v-img>
+                 </v-responsive>
+
+              <v-card-text>
+                  <div class="subheading">Auction 1</div>
+                  <div class="grey--text">Details</div>
+              </v-card-text>
+              
+              <v-card-actions class="justify-center">                   
+                  <v-btn flat  dark class="orange">Bid Now!
+              </v-btn>
+              </v-card-actions>
+             </v-card>
+          </v-flex>
+
+     <v-flex xs12 md3 class="ma-3" >
+            <v-card class="text-xs-center">
+                <v-responsive class="pt-4">
+                    image goes here
+                </v-responsive>
+
+             <v-card-text>
+                 <div class="subheading">Auction 1</div>
+                 <div class="grey--text">Details</div>
+             </v-card-text>
+             
+             <v-card-actions class="justify-center">                   
+                 <v-btn flat  dark class="orange">Bid Now!
+             </v-btn>
+             </v-card-actions>
+            </v-card>
+         </v-flex>
+
+     <v-flex xs12 md3 class="ma-3" >
+             <v-card class="text-xs-center">
+                 <v-responsive class="pt-4">
+                     image goes here
+                 </v-responsive>
+
+              <v-card-text>
+                  <div class="subheading">Auction 1</div>
+                  <div class="grey--text">Details</div>
+              </v-card-text>
+              
+              <v-card-actions class="justify-center">                   
+                  <v-btn flat  dark class="orange">Bid Now!
+              </v-btn>
+              </v-card-actions>
+             </v-card>
+          </v-flex>
+     
+
+</v-layout>
+-->
+{% endblock %}

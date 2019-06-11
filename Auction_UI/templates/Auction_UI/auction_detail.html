@@ -1,0 +1,141 @@
+{% extends 'Auction_UI/base.html' %}
+
+{% block content %}
+<v-layout row>
+    
+        <v-flex xs12 sm4 offset-sm3>
+            
+          <v-card flat>
+            <v-img
+              src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+              height="400px"
+            ></v-img>
+            <!--Text at the bottom of the image-->
+            <v-card-text class="justify-center" >
+                <v-layout>
+                    <v-flex xs12>
+                        <div >
+                          <h3 class="headline ">{{auction.title}}</h3>
+                          <div class="grey--text"> {{ auction.description }} </div>                  
+                          <div class="grey--text">Ending: {{auction.end_datetime}}</div>
+                        </div>
+                    </v-flex>
+                    <v-spacer></v-spacer>
+                    <v-flex class="orange--text headline">${{auction.base_price}}</v-flex>
+                </v-layout>
+                
+                
+                <!--  Comment section on the card  -->
+                <v-divider class="mt-3"></v-divider>
+                <div>
+                    <!-- Comment Button   -->
+                    <v-btn flat  dark color="orange " >Add a Comment
+                    </v-btn>
+                </div>
+                <div class="mt-4">
+                    <v-subheader class="grey--text text-sm-right">Comments</v-subheader>
+                </div>
+
+                    {% for comment in auction_comments.results %}
+                    
+                    <div>
+                        <v-list two-line>
+                            <v-list-tile>
+                                <v-list-tile-avatar>
+                                        <v-avatar  color="grey lighten-2">
+                                            <v-icon dark>person</v-icon>
+                                        </v-avatar>
+                                      </v-list-tile-avatar>
+                        
+                                      <v-list-tile-content>
+                                        <v-list-tile-title >{{ comment.message}}</v-list-tile-title>
+                                        <v-list-tile-sub-title >User: {{comment.user }} {{comment.created}} </v-list-tile-sub-title>
+                                      </v-list-tile-content>
+                            </v-list-tile>
+                        </v-list>
+                    </div>   
+                    
+                    {% endfor %}
+            </v-card-text>
+        </v-card>
+        </v-flex>
+
+        <!--Bid Section next to image-->
+        <v-flex xs12 sm2>
+            <v-card flat>
+                <v-toolbar flat class="white "> 
+                        <v-btn flat  dark class="orange ma-5" >Bid Now!
+                            </v-btn>
+                       
+                </v-toolbar>
+                <v-subheader class=" orange--text">
+                        Current Bids
+                </v-subheader>              
+                <v-card-text class="justify-center" >
+                   
+                    <div>                            
+                          
+                        {% for bid in auction_bids.results %}
+                        <span ><v-icon class="orange--text">star</v-icon>
+                            ${{bid.amount_offered}} -- </span>
+                                
+                            <span class="grey--text lighten-4 font-weight-light">
+                                {{bid.created}}
+                            </span>
+                            <v-divider class="mb-1 mt-1"></v-divider>
+                            <div></div>
+                        
+                        
+                        {% endfor %}
+                        </div>
+                        
+                      </v-card-text>
+                      
+            </v-card>
+        </v-flex>
+   
+</v-layout>            
+    <!--
+            <v-card-actions>
+              <v-btn flat color="orange">Share</v-btn>
+              <v-btn flat color="orange">Explore</v-btn>
+            </v-card-actions>
+          </v-card>
+        
+      </v-layout> -->
+{% endblock %}
+
+<v-layout row wrap>
+        {% for auction in auction_list.results %}
+        <v-flex xs12 md2 class="ma-3" >
+            <v-card class="text-xs-center">
+                <v-responsive class="">
+                       <v-img
+                        class="white--text"
+                        height="220px"
+                        src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+                        href="http://www.google.com"
+                      >
+                      <v-container fill-height fluid>
+                            <v-layout fill-height>
+                              <v-flex xs12 align-end flexbox>
+                                <span class="headline white--text">{{auction.title}}</span>
+                              </v-flex>
+                            </v-layout>
+                          </v-container>
+                    </v-img>
+                </v-responsive>
+    
+             <v-card-text>
+                 <div class="subheading">{{auction.title}}</div>
+                 <div class="orange--text">${{auction.base_price}}</div>
+             </v-card-text>
+             
+             <v-card-actions class="justify-center">                   
+                 <v-btn flat  dark class="orange" href="{url 'auction_detail' pk=auction.id %}">Details
+             </v-btn>
+             </v-card-actions>
+            </v-card>
+         </v-flex>
+         {% endfor %}
+    </v-layout>

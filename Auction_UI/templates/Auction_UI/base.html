@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+<body>
+  <div id="app">
+    <v-app class="white">
+      <v-content class="">          
+          <v-toolbar class="orange white--text" app >
+              <v-flex s12 sm6 md4>
+                <v-btn outline dark class="orange" href="../">
+                  <h1>SMITHIES AUCTIONS</h1>
+                </v-btn>
+                    
+              </v-flex>              
+                <!--Search text box and Search button-->
+                <v-flex xs12 sm4 class="mt-2">
+                  <v-form action="{% url 'search' %}" method='GET'>
+                    {% csrf_token %}
+                    <v-layout row wrap>
+                      <v-flex >
+                          <v-text-field dark append-icon="search"    
+                            name="search"
+                            color="white"    
+                            background-color="white" 
+                            placeholder="{{ search_text }}"       
+                            outline>
+                        </v-text-field>
+                      </v-flex>
+                      <v-flex>
+                          <v-btn type="submit" class="white orange--text" flat >Search</v-btn>
+                      </v-flex>                      
+                    </v-layout>           
+                  </v-form>
+                </v-flex>
+              
+
+                <v-spacer></v-spacer>
+               
+                <v-btn outline dark class="orange" href="../auction_login">
+                  Login
+                  <v-icon right>person</v-icon>
+                </v-btn>  
+               
+            </v-toolbar>
+
+        <v-container class="my-5" justify-center>
+            <v-card flat>
+           <!-- Insert everything here-->
+           {% block content %}
+           {% endblock %}
+        </v-card>
+        </v-container>
+      </v-content>
+    </v-app>
+    
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+  <script>
+    new Vue({ el: '#app' })
+  </script>
+</body>
+</html>

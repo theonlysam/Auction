@@ -12,7 +12,11 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
+from Auction_API.permissions import IsCurrentUserOwnerOrReadOnly
+from rest_framework import filters
+from django_filters import AllValuesFilter
 from django.http import Http404
+
 
 
 
@@ -21,17 +25,29 @@ class AuctionsList(generics.ListCreateAPIView):
     'List all Auctions, or create a new auction'
     queryset = Auction.objects.all()
     serializer_class = AuctionSerializer
+    filter_fields = ('title',)
+    search_fields = ('title','description',)
+
+    def create(self, request, *args, **kwargs):
+        'Upload Image'
+        serializer = self.get_serializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status = status.HTTP_201_CREATED)
+        return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
     
 
 class AuctionsDetail(generics.RetrieveUpdateDestroyAPIView):
     'Process specific Auction'
     queryset = Auction.objects.all()
     serializer_class = AuctionSerializer
+    #permission_class = (IsCurrentUserOwnerOrReadOnly,)
 
 class AuctionBidList(generics.ListAPIView):
     'List all bids related to an auction'
     serializer_class = BidSerializer
-    permission_classes = (IsAuthenticated,)
+    #permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
         queryset = Bid.objects.filter(auction = self.kwargs['pk'])
@@ -40,7 +56,7 @@ class AuctionBidList(generics.ListAPIView):
 class AuctionCommentList(generics.ListAPIView):
     'List all comments related to an auction'
     serializer_class = CommentSerializer
-    permission_classes = (IsAuthenticated,)
+    #permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
         queryset = Comment.objects.filter(auction = self.kwargs['pk'])
@@ -57,6 +73,7 @@ class BidDelete(generics.DestroyAPIView):
     serializer_class = BidSerializer
     queryset = Bid.objects.all()
     permission_classes = (IsAuthenticated,)
+    #permission_classes = (IsAuthenticated, IsCurrentUserOwnerOrReadOnly,)    
     #for destroy a queryset is needed or override get_queryset()
 
 class CommentPost(generics.CreateAPIView):
@@ -69,13 +86,15 @@ class CommentDelete(generics.DestroyAPIView):
     serializer_class = CommentSerializer
     queryset = Comment.objects.all()
     permission_classes = (IsAuthenticated,)
+    #permission_classes = (IsAuthenticated, IsCurrentUserOwnerOrReadOnly,)   
 
 class CreateUser(generics.CreateAPIView):
     'Create a user'
-    serializer_class = UserSerializer
-    permission_classes = (IsAuthenticated,)
+    serializer_class = UserSerializer    
+    
 
 #class UserLogin(generics.)
+
 
 
 ###############################################################################
@@ -189,3 +208,4 @@ class CommentDeleteCBV(APIView):
         comment = self.get_object(pk)
         comment.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+

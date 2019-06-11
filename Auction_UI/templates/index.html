@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+<body>
+  <div id="app">
+    <v-app>
+      <v-content class="">          
+          <v-toolbar class="orange white--text" app >
+              <v-flex s12 sm6 md4>
+                    <h1>SMITHIES AUCTIONS</h1>
+              </v-flex>              
+       
+                <v-flex xs12 sm6 md3>
+                    <v-text-field dark append-icon="search"    
+                    color="white"    
+                    background-color="white"               
+                    
+                    outline
+                    
+                    ></v-text-field>
+                    
+                </v-flex><v-btn class="white orange--text" flat >Search</v-btn>
+                <v-spacer></v-spacer>
+                <v-btn outline dark class="orange">
+                    Login
+                    <v-icon right>person</v-icon>
+                </v-btn>             
+            </v-toolbar>
+
+        <v-container class="my-5" justify-center>
+            <v-card flat>
+           <v-layout row wrap>
+               <v-flex xs12 md2  class="ma-3" >
+                   <v-card class="text-xs-center">
+                       <v-responsive class="">
+                            <v-img
+                            src="https://cdn.vuetifyjs.com/images/cards/desert.jpg"
+                            height="220px"                         
+                          >
+                          <v-container fill-height fluid>
+                                <v-layout fill-height>
+                                  <v-flex xs12 align-end flexbox>
+                                    <span class="headline white--text">Top 10 Australian beaches</span>
+                                  </v-flex>
+                                </v-layout>
+                              </v-container>
+                        </v-img>
+                       </v-responsive>
+
+                    <v-card-text>
+                        <div class="subheading">Auction 1</div>
+                        <div class="orange--text">Details</div>
+                    </v-card-text>
+                    <v-divider></v-divider>
+                    <v-card-actions class="justify-center">                   
+                        <v-btn flat  dark class="orange">Bid Now!
+                    </v-btn>
+                    </v-card-actions>
+                   </v-card>
+                </v-flex>
+            
+                <v-flex xs12 md2 class="ma-3" >
+                        <v-card class="text-xs-center">
+                            <v-responsive class="">
+                                    <v-img
+                                    class="white--text"
+                                    height="220px"
+                                    src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+                                  >
+                                  <v-container fill-height fluid>
+                                        <v-layout fill-height>
+                                          <v-flex xs12 align-end flexbox>
+                                            <span class="headline white--text">Top 10 Australian beaches</span>
+                                          </v-flex>
+                                        </v-layout>
+                                      </v-container>
+                                </v-img>
+                            </v-responsive>
+     
+                         <v-card-text>
+                             <div class="subheading">Auction 1</div>
+                             <div class="grey--text">Details</div>
+                         </v-card-text>
+                         
+                         <v-card-actions class="justify-center">                   
+                             <v-btn flat  dark class="orange">Bid Now!
+                         </v-btn>
+                         </v-card-actions>
+                        </v-card>
+                     </v-flex>
+
+                <v-flex xs12 md3 class="ma-3" >
+                       <v-card class="text-xs-center">
+                           <v-responsive class="pt-4">
+                               image goes here
+                           </v-responsive>
+    
+                        <v-card-text>
+                            <div class="subheading">Auction 1</div>
+                            <div class="grey--text">Details</div>
+                        </v-card-text>
+                        
+                        <v-card-actions class="justify-center">                   
+                            <v-btn flat  dark class="orange">Bid Now!
+                        </v-btn>
+                        </v-card-actions>
+                       </v-card>
+                    </v-flex>
+
+                <v-flex xs12 md3 class="ma-3" >
+                        <v-card class="text-xs-center">
+                            <v-responsive class="pt-4">
+                                image goes here
+                            </v-responsive>
+        
+                         <v-card-text>
+                             <div class="subheading">Auction 1</div>
+                             <div class="grey--text">Details</div>
+                         </v-card-text>
+                         
+                         <v-card-actions class="justify-center">                   
+                             <v-btn flat  dark class="orange">Bid Now!
+                         </v-btn>
+                         </v-card-actions>
+                        </v-card>
+                     </v-flex>
+                
+
+           </v-layout>
+        </v-card>
+        </v-container>
+      </v-content>
+    </v-app>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+  <script>
+    new Vue({ el: '#app' })
+  </script>
+</body>
+</html>
